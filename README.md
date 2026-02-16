@@ -1,28 +1,47 @@
-### This is a project accompanying Nginx Crash Course
+## Project Features
+- **Node.js Application**: A simple server (`server.js`) responding to HTTP requests.
+- **Dockerized Environment**:  
+  - `Dockerfile` for Node.js app  
+  - `docker-compose.yaml` for multi-container orchestration
+- **NGINX Configuration**:  
+  - HTTP (`nginx.conf.http_load_bal_code`)  
+  - HTTPS (`nginx.conf.https_code`)  
+  - Self-signed SSL certificates for HTTPS testing
 
-### Commands used in the tutorial
+  Build and start Docker containers
+  
+    `docker compose up --build`
 
-##### start nginx
-`nginx`
+    `docker compose up --build -d`
 
-##### get options
-`nginx -h`
+  ## In Nginx:
+         mkdir /nginx-certs cd /nginx-certs
+         Run this command
+         openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx-selfsigned.key -out nginx-selfsigned.crt 
+         it will create two key public key and private add your code 
 
-##### restart nginx
-`nginx -s reload`
+         Then you need to find nginx.conf for your system and paste the code that require to run like if you http code use http templte or if you want secure connection then https conf templte paste in your code
+         start nginx
 
-##### stop nginx
-`nginx -s stop`  
+## Commands used in the tutorial
 
-##### print logs
-`tail -f /usr/local/var/log/nginx/access.log`
+    start nginx
+    
+    nginx
+    get options
+    
+    nginx -h
+    restart nginx
+    
+    nginx -s reload
 
-##### restart nginx
-`nginx -s reload`
+    stop nginx
+    
+    nginx -s stop
 
-##### create folder for nginx certificates
-`mkdir ~/nginx-certs`
-`cd ~/nginx-certs`
+## secure connection through nginx https
+<img width="1880" height="886" alt="Screenshot 2026-02-16 123048" src="https://github.com/user-attachments/assets/9233780a-7069-4243-bcef-62ebd54c46b0" />
 
-##### create self-signed certificate
-`openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx-selfsigned.key -out nginx-selfsigned.crt`
+
+
+         
