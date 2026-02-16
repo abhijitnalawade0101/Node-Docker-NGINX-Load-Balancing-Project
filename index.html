@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <style>
+        :root {
+            --netflix-red: #e50914;
+            --black: #141414;
+            --grey: #808080;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--black);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 4%;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, transparent);
+            z-index: 1000;
+            transition: background 0.5s;
+        }
+
+        .nav-black { background: var(--black); }
+
+        .logo {
+            color: var(--netflix-red);
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-right: 25px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            font-size: 0.85rem;
+        }
+
+        .nav-links li { cursor: pointer; transition: 0.3s; }
+        .nav-links li:hover { color: #b3b3b3; }
+
+        /* --- Hero Billboard --- */
+        .billboard {
+            height: 85vh;
+            background: linear-gradient(to top, var(--black) 5%, transparent 50%),
+                        linear-gradient(to right, rgba(0,0,0,0.8), transparent),
+                        url('https://images.unsplash.com/photo-1574267432553-4b4628081c31?q=80&w=2073&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 4%;
+        }
+
+        .billboard h1 { font-size: 4rem; margin-bottom: 0.5rem; }
+        .billboard p { max-width: 500px; font-size: 1.2rem; margin-bottom: 1.5rem; }
+
+        .btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-right: 10px;
+        }
+        .btn-play { background: white; color: black; }
+        .btn-info { background: rgba(109, 109, 110, 0.7); color: white; }
+
+        /* --- Movie Rows --- */
+        .row {
+            margin: 20px 0 20px 4%;
+        }
+
+        .row-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .posters {
+            display: flex;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            padding: 20px 0;
+            scrollbar-width: none; /* Hide scrollbar Firefox */
+        }
+
+        .posters::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+
+        .poster {
+            flex-shrink: 0;
+            width: 200px;
+            margin-right: 10px;
+            transition: transform 450ms;
+            cursor: pointer;
+        }
+
+        .poster:hover { transform: scale(1.08); }
+
+        .poster-large { width: 300px; }
+
+        .poster img {
+            width: 100%;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">NETFLIX</div>
+        <ul class="nav-links">
+            <li>Home</li>
+            <li>TV Shows</li>
+            <li>Movies</li>
+            <li>New & Popular</li>
+        </ul>
+    </nav>
+
+    <header class="billboard">
+        <h1>Stranger Things</h1>
+        <p>When a young boy vanishes, a small town uncovers a mystery involving secret experiments and terrifying supernatural forces.</p>
+        <div>
+            <button class="btn btn-play" onclick="playMovie('Stranger Things')">▶ Play</button>
+            <button class="btn btn-info">ⓘ More Info</button>
+        </div>
+    </header>
+
+    <div class="row">
+        <p class="row-title">NETFLIX ORIGINALS</p>
+        <div class="posters">
+            <div class="poster poster-large"><img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=500&auto=format" alt="Movie"></div>
+            <div class="poster poster-large"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format" alt="Movie"></div>
+            <div class="poster poster-large"><img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=500&auto=format" alt="Movie"></div>
+            <div class="poster poster-large"><img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=500&auto=format" alt="Movie"></div>
+            <div class="poster poster-large"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format" alt="Movie"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <p class="row-title">Trending Now</p>
+        <div class="posters">
+            <div class="poster"><img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&auto=format" alt="Movie"></div>
+            <div class="poster"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400&auto=format" alt="Movie"></div>
+            <div class="poster"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&auto=format" alt="Movie"></div>
+            <div class="poster"><img src="https://images.unsplash.com/photo-15120706327b2-4a4ef1b07392?w=400&auto=format" alt="Movie"></div>
+            <div class="poster"><img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&auto=format" alt="Movie"></div>
+            <div class="poster"><img src="https://images.unsplash.com/photo-1542204172-356399558651?w=400&auto=format" alt="Movie"></div>
+        </div>
+    </div>
+
+    <script>
+        // Change Nav background on scroll
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-black');
+            } else {
+                nav.classList.remove('nav-black');
+            }
+        });
+
+        function playMovie(name) {
+            alert("Now playing: " + name);
+        }
+    </script>
+</body>
+</html>
